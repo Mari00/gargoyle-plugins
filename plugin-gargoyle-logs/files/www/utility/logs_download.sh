@@ -22,7 +22,7 @@ eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_
 
 type=$(uci get system.@system[0].log_type -q)
 if [ "$type" = "file" ]; then
-	path=$GET_plik
+	path=$(uci get system.@system[0].log_file)$GET_plik
 else
 	logread > /tmp/logi.txt;
 	path="/tmp/logi.txt";

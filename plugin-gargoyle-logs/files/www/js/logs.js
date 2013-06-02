@@ -335,48 +335,50 @@ function resetData()
 	
 	if(log_on.length >= 1 && typeof log_file != "undefined")
 	{
-		
 		var log_fileTableProces = new Array();
-
 		for(lp=0; lp < log_file.length; lp++)
 		{
-		if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
-		{
-			var columnNames = ['', '', 'Logi:'];
-			var logT = "Przechowywane w pamięci";
-		}
-		else
-		{
-			var columnNames = ['', 'Rozmiar', '', 'Logi:'];
-			var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
-			var logT_all = log_file[lp][1];
-			var logT = logT_all.replace("/tmp/usb_mount/", "").replace(re, "");
-		}
-		var file_size = log_file[lp][0];
-		var button1 = createInput("button");
-		button1.className="default_button";
-		button1.value = "Zakończ proces";
-		button1.onclick = killProces;
-		var button2 = createInput("button");
-		button2.className="default_button";
-		button2.value = "Pokaż";
-		button2.onclick = showLogs;
-		button2.id = logT_all;
-		var button3 = createInput("button");
-		button3.className="default_button";
-		button3.value = "Pobierz";
-		button3.onclick = downloadLogs;
-		button3.id = logT_all;
-		if (log_on[0][2] != "" && type == "file")
-		{
-			var button4 = createInput("button");
-			button4.className="default_button";
-			button4.value = "Wyczyść";
-			button4.onclick = delLogs;
-			log_fileTableProces.push([logT, file_size, button1, button2, button3, button4]);
-		}
-		else
-				log_fileTableProces.push([logT, button1, button2, button3]);
+			if (lp == 1) 
+				var file0 = ".0"; 
+			else 
+				var file0 = "";
+			if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
+			{
+				var columnNames = ['', '', 'Logi:'];
+				var logT = "Przechowywane w pamięci";
+			}
+			else
+			{
+				var columnNames = ['', 'Rozmiar', '', 'Logi:'];
+				var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
+				var logT = log_file[lp][1];
+				var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
+			}
+			var file_size = log_file[lp][0];
+			var button1 = createInput("button");
+			button1.className="default_button";
+			button1.value = "Zakończ proces";
+			button1.onclick = killProces;
+			var button2 = createInput("button");
+			button2.className="default_button";
+			button2.value = "Pokaż";
+			button2.onclick = showLogs;
+			button2.id = file0;
+			var button3 = createInput("button");
+			button3.className="default_button";
+			button3.value = "Pobierz";
+			button3.onclick = downloadLogs;
+			button3.id = file0;
+			if (log_on[0][2] != "" && type == "file")
+			{
+				var button4 = createInput("button");
+				button4.className="default_button";
+				button4.value = "Wyczyść";
+				button4.onclick = delLogs;
+				log_fileTableProces.push([logT, file_size, button1, button2, button3, button4]);
+			}
+			else
+			log_fileTableProces.push([logT, button1, button2, button3]);
 		}		
 		if (log_fileTableProces.length != 0)
 		{

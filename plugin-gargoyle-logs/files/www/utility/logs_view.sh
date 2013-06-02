@@ -27,7 +27,7 @@ gargoyle_header_footer -m -c "internal.css"
 <?  
 type=$(uci get system.@system[0].log_type -q)
 if [ "$type" = "file" ]; then
-	cat $GET_plik
+	cat $(uci get system.@system[0].log_file)$GET_plik
 else
 	logread
 fi
