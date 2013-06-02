@@ -1,6 +1,6 @@
 /*
- *     Copyright (c) 2012 Saski
- *     v1.4a
+ *     Copyright (c) 2013 Saski
+ *     v1.4b
  *
  *     This program is free software; you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -42,12 +42,15 @@ function updateLogsTable()
 				var logsLines = req.responseText.split(/[\n\r]+/);
 				var logsDataTable = new Array();
 				var logsIndex;
+				var monthNames = { "Jan" : "Sty", "Feb" : "Lut", "Mar" : "Mar", "Apr" : "Kwi", "May" : "Maj", "Jun" : "Cze", "Jul" : "Lip", "Aug" : "Sie", "Sep" : "Wrz", "Oct" :"Paź", "Nov" : "Lis", "Dec" : "Gru" };
 				document.getElementById("log").style.display = logsLines[0].match(/^Success/) == null ? "block" : "none";
 				document.getElementById("no_log").style.display = logsLines[0].match(/^Success/) == null ? "none" : "block";
 				document.getElementById("lastlog").style.display =  logsLines[0].match(/^Success/) == null ? "block" : "none";
+				if(type == "file")
 				for(logsIndex=1; logsLines[logsIndex].match(/^Success/) == null; logsIndex++)
 				{
 					var month = logsLines[logsIndex].substr(0,3);
+					var month = monthNames[month];
 					var day = logsLines[logsIndex].substr(3,3);
 					var hour = logsLines[logsIndex].substr(7,8);
 					var desc = logsLines[logsIndex].substr(16);
@@ -302,10 +305,7 @@ function resetData()
 	{
 		var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
 		document.getElementById("log_file").value = file.replace("/tmp/usb_mount/", "").replace(re, "");
-		var file2 = 1; 
 	}
-	if(file == "" || file == null)
-		var file2 = 0; 
 	var size = uciOriginal.get("system", systemSections[0], "log_size");
 	if(size == "" || size == null)
 		document.getElementById("log_size").value = 16;
@@ -333,25 +333,26 @@ function resetData()
 	else
 		setSelectedValue("log_cronloglevel", cronloglevel);
 	
-	if(log_on.length >= 1)
+	if(log_on.length >= 1 && typeof log_file != "undefined")
 	{
-		var columnNames = ['', 'PID', '', 'Logi:'];
+		
 		var log_fileTableProces = new Array();
-		for(lp=0; lp <= file2; lp++)
+
+		for(lp=0; lp < log_file.length; lp++)
 		{
-		if (1 == lp)
-			var file0 = ".0";
-		else
-			var file0 = "";
 		if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
+		{
+			var columnNames = ['', '', 'Logi:'];
 			var logT = "Przechowywane w pamięci";
+		}
 		else
-			{
-				var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
-				var logT = file+file0;
-				var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
-			}
-		var pid = log_on[0][0];
+		{
+			var columnNames = ['', 'Rozmiar', '', 'Logi:'];
+			var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
+			var logT_all = log_file[lp][1];
+			var logT = logT_all.replace("/tmp/usb_mount/", "").replace(re, "");
+		}
+		var file_size = log_file[lp][0];
 		var button1 = createInput("button");
 		button1.className="default_button";
 		button1.value = "Zakończ proces";
@@ -360,22 +361,22 @@ function resetData()
 		button2.className="default_button";
 		button2.value = "Pokaż";
 		button2.onclick = showLogs;
-		button2.id = file0;
+		button2.id = logT_all;
 		var button3 = createInput("button");
 		button3.className="default_button";
 		button3.value = "Pobierz";
 		button3.onclick = downloadLogs;
-		button3.id = file0;
+		button3.id = logT_all;
 		if (log_on[0][2] != "" && type == "file")
 		{
 			var button4 = createInput("button");
 			button4.className="default_button";
 			button4.value = "Wyczyść";
 			button4.onclick = delLogs;
-			log_fileTableProces.push([logT, pid, button1, button2, button3, button4]);
+			log_fileTableProces.push([logT, file_size, button1, button2, button3, button4]);
 		}
 		else
-				log_fileTableProces.push([logT, pid, button1, button2, button3]);
+				log_fileTableProces.push([logT, button1, button2, button3]);
 		}		
 		if (log_fileTableProces.length != 0)
 		{

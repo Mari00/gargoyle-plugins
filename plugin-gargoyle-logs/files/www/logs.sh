@@ -1,7 +1,7 @@
 #!/usr/bin/haserl
 <?
-#      Copyright (c) 2012 Saski
-#      v1.4a
+#      Copyright (c) 2013 Saski
+#      v1.4b
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
@@ -29,6 +29,10 @@
 	blkid | cut -b 1-9,11- | egrep "/dev/sd?" | sed -e 's/LABEL.*UUID=//g' | sed 's/"*//g' | awk '{ if ( $3 != "TYPE=swap") {print "storageDrives.push([\""$1"\",\""$2"\",\""$3"\"]);"} }' 
 	echo "var log_on = [];"
 	ps | grep syslogd | cut -b 1-6,33-39,45- 2>/dev/null | awk '{if ( $2 == "syslogd") {print "log_on.push([\""$1"\",\""$2"\",\""$3"\"]);"} }' 
+	if [ -e "$(uci get system.@system[0].log_file -q)" ]; then
+		echo "var log_file = [];"
+		du -a $(uci get system.@system[0].log_file -q)* | awk '{ {print "log_file.push([\""$1"\",\""$2"\"]);"} }' 
+	fi
 ?>
 //-->
 </script>
@@ -83,7 +87,7 @@
 		</div>
 		<div>
 			<label  class='wideleftcolumn' for='log_port' id='log_port_label' >Port serwera logów:</label>
-			<input type='text' id='log_port' size='5' maxLength='5' />
+			<input type='text' id='log_port' size='5' onkeyup='proofreadNumericRange(this,1,65535)' maxLength='5' />
 		</div>
 		<div id="bottom_button_container">
 			<input type='button' value='Zapisz zmiany' id="save_button" class="bottom_button" onclick='saveChanges()' />

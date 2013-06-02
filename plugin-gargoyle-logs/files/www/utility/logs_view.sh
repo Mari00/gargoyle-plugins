@@ -1,8 +1,8 @@
 #!/usr/bin/haserl
 #!/bin/sh
 <?
-#      Copyright (c) 2012 Saski
-#      v1.4a
+#      Copyright (c) 2013 Saski
+#      v1.4b
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ gargoyle_header_footer -m -c "internal.css"
 <?  
 type=$(uci get system.@system[0].log_type -q)
 if [ "$type" = "file" ]; then
-	cat $(uci get system.@system[0].log_file)$GET_plik
+	cat $GET_plik
 else
 	logread
 fi

@@ -1,7 +1,7 @@
 #!/usr/bin/haserl
 <?
-#      Copyright (c) 2012 Saski
-#      v1.4a
+#      Copyright (c) 2013 Saski
+#      v1.4b
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_
 
 type=$(uci get system.@system[0].log_type -q)
 if [ "$type" = "file" ]; then
-	path=$(uci get system.@system[0].log_file)$GET_plik
+	path=$GET_plik
 else
 	logread > /tmp/logi.txt;
 	path="/tmp/logi.txt";
