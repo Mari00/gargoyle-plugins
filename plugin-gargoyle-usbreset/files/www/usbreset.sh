@@ -21,7 +21,8 @@
 	eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_USER_AGENT" -i "$REMOTE_ADDR" -r "login.sh" -t $(uci get gargoyle.global.session_timeout) -b "$COOKIE_browser_time"  )
 	gargoyle_header_footer -h -s "system" -p "usbreset" -c "internal.css" -j "table.js usbreset.js"
 ?>
-<fieldset id="usbreset">
+<form>
+	<fieldset id="usbreset">
 	<legend class="sectionheader">Urządzenia USB</legend>
 		<div class='indent'>
 			<div id="usbreset_table_container"></div>
