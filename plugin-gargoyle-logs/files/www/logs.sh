@@ -31,7 +31,7 @@
 	ps | grep syslogd | cut -b 1-6,33-39,45- 2>/dev/null | awk '{if ( $2 == "syslogd") {print "log_on.push([\""$1"\",\""$2"\",\""$3"\"]);"} }' 
 	if [ -e "$(uci get system.@system[0].log_file -q)" ]; then
 		echo "var log_file = [];"
-		du -a $(uci get system.@system[0].log_file -q)* | awk '{ {print "log_file.push([\""$1"\",\""$2"\"]);"} }' 
+		du -h $(uci get system.@system[0].log_file -q)* | awk '{ {print "log_file.push([\""$1"\",\""$2"\"]);"} }' 
 	fi
 ?>
 //-->

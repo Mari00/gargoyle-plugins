@@ -352,7 +352,7 @@ function resetData()
 				var columnNames = ['', 'Rozmiar', '', 'Logi:'];
 				var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
 				var logT = log_file[lp][1];
-				var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
+				//var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
 			}
 			var file_size = log_file[lp][0];
 			var button1 = createInput("button");
