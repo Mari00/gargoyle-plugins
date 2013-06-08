@@ -1,7 +1,7 @@
 #!/usr/bin/haserl
 <?
 #      Copyright (c) 2013 Saski
-#      v1.4b
+#      v1.4c
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
