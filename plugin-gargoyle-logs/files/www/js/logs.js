@@ -1,6 +1,6 @@
 /*
  *     Copyright (c) 2013 Saski
- *     v1.4c
+ *     v1.4d
  *
  *     This program is free software; you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -230,19 +230,22 @@ function downloadLogs()
 }
 function delLogs()
 {
-	if(confirm("Usunąć logi?"))
+	var systemSections = uciOriginal.getAllSectionsOfType("system", "system");
+	var file = uciOriginal.get("system", systemSections[0], "log_file");
+	row = this.parentNode.parentNode;
+	index = row.childNodes[3].firstChild.id;
+	if(confirm("Usunąć plik z logami: "+file+index+"?"))
 	{
-		var log_file=this.parentNode.parentNode.childNodes[0].firstChild.data;
-		var cmd = [ "rm " + log_file ];
+		var cmd = [ "rm " + file+index ];
 		execute(cmd);
 	}
 }
 
 function killProces()
 {
-	if(confirm("Zakończyć proces?"))
+	var pidKill = log_on[0][0];
+	if(confirm("Zakończyć proces "+pidKill+"?"))
 	{
-		var pidKill=this.parentNode.parentNode.childNodes[1].firstChild.data;
 		var cmd = [ "kill -9 " + pidKill ];
 		execute(cmd);
 	}
@@ -352,6 +355,7 @@ function resetData()
 				var columnNames = ['', 'Rozmiar', '', 'Logi:'];
 				var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
 				var logT = log_file[lp][1];
+				var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
 			}
 			var file_size = log_file[lp][0];
 			var button1 = createInput("button");
