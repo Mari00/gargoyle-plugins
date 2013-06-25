@@ -1,6 +1,6 @@
 /*
  *     Copyright (c) 2013 Saski
- *     v1.4d
+ *     v1.4e
  *
  *     This program is free software; you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -46,7 +46,6 @@ function updateLogsTable()
 				document.getElementById("log").style.display = logsLines[0].match(/^Success/) == null ? "block" : "none";
 				document.getElementById("no_log").style.display = logsLines[0].match(/^Success/) == null ? "none" : "block";
 				document.getElementById("lastlog").style.display =  logsLines[0].match(/^Success/) == null ? "block" : "none";
-				if(type == "file")
 				for(logsIndex=1; logsLines[logsIndex].match(/^Success/) == null; logsIndex++)
 				{
 					var month = logsLines[logsIndex].substr(0,3);
@@ -336,6 +335,8 @@ function resetData()
 	else
 		setSelectedValue("log_cronloglevel", cronloglevel);
 	
+	if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
+		log_file = 'c';
 	if(log_on.length >= 1 && typeof log_file != "undefined")
 	{
 		var log_fileTableProces = new Array();
