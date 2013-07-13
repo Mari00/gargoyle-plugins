@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=plugin_gargoyle_hdidle
-PKG_VERSION:=20130602
+PKG_VERSION:=20130713
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
