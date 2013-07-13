@@ -1,7 +1,6 @@
 #!/usr/bin/haserl
 <?
 #      Copyright (c) 2013 Saski
-#      v1.4e
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
@@ -40,28 +39,28 @@
 <form>
 	<fieldset id="log_set">
 		<legend class="sectionheader">Logi - Ustawienia</legend>
-		<div>
-			<label  class='wideleftcolumn' for='log_type' id='log_type_label' >Zapis logów do:</label>
+		<div id="log_type_container">
+			<label class='leftcolumn' for='log_type' id='log_type_label'>Zapis logów do:</label>
 			<select class='rightcolumn' id="log_type" onchange="hideLogsPath();">
 				<option value="file">Pliku</option>
 				<option value="circular">Pamięci</option>
 			</select>
 		</div>
-		<div id="log_disk_div">
-			<label  class='wideleftcolumn' for='log_disk' id='log_disk_label' >Napęd:</label>
+		<div id="log_disk_container">
+			<label class='leftcolumn' for='log_disk' id='log_disk_label'>Napęd:</label>
 			<select class='rightcolumn' id="log_disk"></select>
 		</div>
-		<div id="log_file_div">
-			<label  class='wideleftcolumn' for='log_file' id='log_file_label' >Plik logów:</label>
-			<input type='text' id='log_file' size='40'  />
+		<div id="log_file_container">
+			<label class='leftcolumn' for='log_file' id='log_file_label'>Plik logów:</label>
+			<input class='rightcolumn' type='text' id='log_file' size='40'  />
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='log_size' id='log_size_label' >Rozmiar plików (w kB):</label>
-			<input type='text' id='log_size' onkeyup="proofreadNumeric(this)"  size='4' maxlength='4'/>
+		<div id="log_size_container">
+			<label class='leftcolumn' for='log_size' id='log_size_label'>Rozmiar plików (w kB):</label>
+			<input class='rightcolumn' type='text' id='log_size' onkeyup="proofreadNumeric(this)" size='4' maxlength='4'/>
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='log_conloglevel' id='log_conloglevel_label' >Poziom logów (kernel):</label>
-			<select class='rightcolumn' id="log_conloglevel">
+		<div id="log_kernel_level_container">
+			<label class='leftcolumn' for='log_kernel_level' id='log_kernel_level_label'>Poziom logów (kernel):</label>
+			<select class='rightcolumn' id="log_kernel_level">
 				<option value="0">0 - Awaryjny komunikat systemowy</option>
 				<option value="1">1 - Alarm</option>
 				<option value="2">2 - Krytyczny komunikat</option>
@@ -72,38 +71,40 @@
 				<option value="7">7 - Wykrycie błędu programu</option>
 			</select>
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='log_cronloglevel' id='log_cronloglevel_label' >Poziom logów (cron):</label>
-			<select class='rightcolumn' id="log_cronloglevel">
+		<div id="log_cron_level_container">
+			<label class='leftcolumn' for='log_cron_level' id='log_cron_level_label'>Poziom logów (cron):</label>
+			<select class='rightcolumn' id="log_cron_level">
 				<option value="5">Wykrycie błędu programu</option>
 				<option value="8">Normalny</option>
 				<option value="9">Ostrzeżenie</option>
 			</select>
 		</div>
+		<div id="log_ip_container">
+			<span class='leftcolumn'>
+				<label for='log_ip' id='log_ip_label'>IP serwera logów:</label>
+			</span>
+			<span class='rightcolumn'>
+				<input type='checkbox' id='use_log_ip_port' onchange="unlockLogsServ();" />&nbsp;&nbsp;
+				<input type='text' id='log_ip' size='20' onkeyup='proofreadIp(this)' maxlength='15' />
+			</span>
+		<div id="log_port_container">
 		<div>
-			<input type='checkbox' id='use_log_ip_port' onchange="unlockLogsServ();" />&nbsp;&nbsp;
-			<label  class='wideleftcolumn' for='log_ip' id='log_ip_label' >IP serwera logów:</label>
-			<input type='text' id='log_ip' size='20' onkeyup='proofreadIp(this)' maxLength='15' />
-		</div>
-		<div>
-			<label  class='wideleftcolumn' for='log_port' id='log_port_label' >Port serwera logów:</label>
-			<input type='text' id='log_port' size='5' onkeyup='proofreadNumericRange(this,1,65535)' maxLength='5' />
+			<label class='leftcolumn' for='log_port' id='log_port_label'>Port serwera logów:</label>
+			<input class='rightcolumn' type='text' id='log_port' size='5' onkeyup='proofreadNumericRange(this,1,65535)' maxlength='5' />
 		</div>
 		<div id="bottom_button_container">
 			<input type='button' value='Zapisz zmiany' id="save_button" class="bottom_button" onclick='saveChanges()' />
-			<input type='button' value='Anuluj' id="reset_button" class="bottom_button" onclick='resetData()'/>
+			<input type='button' value='Anuluj' id="reset_button" class="bottom_button" onclick='resetData()' />
 		</div>
 	</fieldset>
 	<fieldset id="log">
 	<legend class="sectionheader">Logi</legend>
-		<div>
-			<label  class='wideleftcolumn' for='log' id='log_label' >Zapisywanie logów jest teraz:</label>
+		<div id="log_on_off_container">
+			<label  class='wideleftcolumn' for='log' id='log_label'>Zapisywanie logów jest teraz:</label>
 				<span class="rightcolumn"style="color:#27c650; display:none;" id="log_on">Uruchomione</span>
 				<span class="rightcolumn" style="color:red; display:none;" id="log_off">Wyłączone</span>
 		</div>
-		<div class='indent'>
-			<div id="log_table_container"></div>
-		</div>
+		<div id="log_table_container" class='indent'></div>
 	</fieldset>
 	<fieldset id="no_log" style="display:none;">
 		<legend class="sectionheader">Logi</legend>
@@ -111,8 +112,8 @@
 	</fieldset>
 	<fieldset id="lastlog">
 	<legend class="sectionheader">Ostatnie logi</legend>
-		<div>
-			<label  class='wideleftcolumn' for='logs_line' id='logs_line_label' >Ilość linii:</label>
+		<div id="log_line_container">
+			<label  class='leftcolumn' for='logs_line' id='logs_line_label'>Ilość linii:</label>
 			<select class='rightcolumn' id="logs_line" onchange="updateLogsTable(); saveLine();">
 				<option value="26">25</option>
 				<option value="51">50</option>
@@ -120,9 +121,7 @@
 				<option value="101">100</option>
 			</select>
 		</div>
-		<div class='indent'>
-			<div id="lastlog_table_container"></div>
-		</div>
+		<div id="lastlog_table_container" class='indent'></div>
 	</fieldset>
 	<span id="update_container" >Proszę czekać na wprowadzenie zmian...</span>
 </form>

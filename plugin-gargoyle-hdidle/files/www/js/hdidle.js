@@ -1,6 +1,5 @@
 /*
  *     Copyright (c) 2013 Saski
- *     v1.3
  *
  *     This program is free software; you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -168,13 +167,13 @@ function swapBlock()
 	if (swap == diskS)
 	{
 		document.getElementById("hdidle_enabled").disabled = true;
-		document.getElementById("swap_on_div").style.display = "block";
+		document.getElementById("swap_on_container").style.display = "block";
 		document.getElementById("hdidle_enabled").checked = false;
 	}
 	else
 	{
 		document.getElementById("hdidle_enabled").disabled = false;
-		document.getElementById("swap_on_div").style.display = "none";
+		document.getElementById("swap_on_container").style.display = "none";
 	}
 }
 

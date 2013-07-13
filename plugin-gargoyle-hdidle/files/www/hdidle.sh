@@ -1,7 +1,6 @@
 #!/usr/bin/haserl
 <?
 #      Copyright (c) 2013 Saski
-#      v1.3
 #
 #      This program is free software; you can redistribute it and/or modify
 #      it under the terms of the GNU General Public License as published by
@@ -39,31 +38,29 @@
 <form>
 	<fieldset id="disks">
 		<legend class="sectionheader">Hd-Idle - Ustawienia</legend>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle_enabled' id='hdidle_enabled_label' >Hd-Idle:</label>
+		<div id="hdidle_enabled_container" class="nocolumn">
 			<input type='checkbox' id='hdidle_enabled' />
+			<label for='hdidle_enabled' id='hdidle_enabled_label'>Hd-Idle</label
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle_enabled_debug' id='hdidle_enable_debug_label' >Debug:</label>
+		<div id="hdidle_enabled_debug_container" class="nocolumn">
 			<input type='checkbox' id='hdidle_enabled_debug' />
+			<label for='hdidle_enabled_debug' id='hdidle_enable_debug_label'>Debug</label>
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle_disk' id='hdidle_disk_label' >Napęd:</label>
+		<div id="hdidle_disk_container">
+			<label class='leftcolumn' for='hdidle_disk' id='hdidle_disk_label'>Napęd:</label>
 			<select class='rightcolumn' id="hdidle_disk" onchange="swapBlock();"></select>
 		</div>
-		<div id="swap_on_div">
-			<div class="rightcolumnonly">
+		<div id="swap_on_container" class="rightcolumnonly">
 			<span class='rightcolumn' id="swap_on"><em>Na nośniku znajduje się partycja swap!</em></span>
-			</div>
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle_time_unit' id='hdidle_time_unit_label' >Jednostka bezczynności:</label>
+		<div id="hdidle_time_unit_container">
+			<label class='leftcolumn' for='hdidle_time_unit' id='hdidle_time_unit_label'>Jednostka bezczynności:</label>
 			<select class='rightcolumn' id="hdidle_time_unit">
 				<option value="minutes">Minuty</option>
 			</select>
 		</div>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle_time_interval' id='hdidle_time_interval_label' >Wartość bezczynności:</label>
+		<div id="hdidle_time_interval_container">
+			<label class='leftcolumn' for='hdidle_time_interval' id='hdidle_time_interval_label'>Wartość bezczynności:</label>
 			<select class='rightcolumn' id="hdidle_time_interval">
 				<option value="2">2</option>
 				<option value="5">5</option>
@@ -82,8 +79,8 @@
 	
 	<fieldset id="disks">
 	<legend class="sectionheader">Hd-Idle</legend>
-		<div>
-			<label  class='wideleftcolumn' for='hdidle' id='hdidle_label' >Hd-Idle jest teraz:</label>
+		<div id="hdidle_on_off_container">
+			<label class='leftcolumn' for='hdidle' id='hdidle_label'>Hd-Idle jest teraz:</label>
 				<span class="rightcolumn"style="color:#27c650; display:none;" id="hdidle_on">Uruchomiony</span>
 				<span class="rightcolumn" style="color:red; display:none;" id="hdidle_off">Wyłączony</span>
 		</div>

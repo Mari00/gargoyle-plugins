@@ -1,6 +1,5 @@
 /*
  *     Copyright (c) 2013 Saski
- *     v1.4e
  *
  *     This program is free software; you can redistribute it and/or modify
  *     it under the terms of the GNU General Public License as published by
@@ -122,8 +121,8 @@ function saveChanges()
 	var size  = document.getElementById("log_size").value;
 	var ip  = document.getElementById("log_ip").value;
 	var port  = document.getElementById("log_port").value;
-	var conloglevel = getSelectedValue("log_conloglevel");
-	var cronloglevel = getSelectedValue("log_cronloglevel");
+	var conloglevel = getSelectedValue("log_kernel_level");
+	var cronloglevel = getSelectedValue("log_cron_level");
 	var uci = uciOriginal.clone();
 	var preCommands = [];
 	var postCommands = [];
@@ -174,8 +173,8 @@ function saveChanges()
 function hideLogsPath()
 {
 var type  = getSelectedValue("log_type");	
-document.getElementById("log_file_div").style.display = type == "file" && storageDrives.length > 0? "block" : "none";
-document.getElementById("log_disk_div").style.display = type == "file" && storageDrives.length > 0? "block" : "none";
+document.getElementById("log_file_container").style.display = type == "file" && storageDrives.length > 0? "block" : "none";
+document.getElementById("log_disk_container").style.display = type == "file" && storageDrives.length > 0? "block" : "none";
 }
 
 function unlockLogsServ()
@@ -283,7 +282,7 @@ function resetData()
 	document.getElementById("log_on").style.display = log_on.length >= 1 ? "block" : "none";
 	document.getElementById("log_off").style.display = log_on.length < 1 ? "block" : "none";
 	document.getElementById("log_disk").style.display = storageDrives.length > 0 ? "block" : "none";
-	document.getElementById("log_file_div").style.display = storageDrives.length > 0 ? "block" : "none";
+	document.getElementById("log_file_container").style.display = storageDrives.length > 0 ? "block" : "none";
 
 	var systemSections = uciOriginal.getAllSectionsOfType("system", "system");
 	var type = uciOriginal.get("system", systemSections[0], "log_type");
@@ -325,15 +324,15 @@ function resetData()
 	
 	var conloglevel = uciOriginal.get("system", systemSections[0], "conloglevel");
 	if(conloglevel == "" || conloglevel == null)
-		setSelectedValue("log_conloglevel", 7);
+		setSelectedValue("log_kernel_level", 7);
 	else
-		setSelectedValue("log_conloglevel", conloglevel);
+		setSelectedValue("log_kernel_level", conloglevel);
 	
 	var cronloglevel = uciOriginal.get("system", systemSections[0], "cronloglevel");
 	if(cronloglevel == "" || cronloglevel == null)
-		setSelectedValue("log_cronloglevel", 5);
+		setSelectedValue("log_cron_level", 5);
 	else
-		setSelectedValue("log_cronloglevel", cronloglevel);
+		setSelectedValue("log_cron_level", cronloglevel);
 	
 	if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
 		log_file = 'c';
