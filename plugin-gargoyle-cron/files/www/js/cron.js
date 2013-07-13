@@ -31,7 +31,7 @@
 	}
 	var commands = createCommands.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
-	setControlsEnabled(false, true, "Proszê czekaæ...");
+	setControlsEnabled(false, true, "ProszÄ™ czekaÄ‡...");
         
 	var stateChangeFunction = function(req)
 	{

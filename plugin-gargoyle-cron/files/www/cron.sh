@@ -26,17 +26,54 @@
 	<fieldset id="task">
 	<legend class="sectionheader">Zadania crontab</legend>
 			<div id="task_table_container" class='indent'></div>
-		</div>
 	</fieldset>
 	<fieldset id="no_task" style="display:none;">
 		<legend class="sectionheader">Zadania crontab</legend>
-		<em><span class="nocolumn">Brak zadan w crontab.</span></em>
+		<em><span class="nocolumn">Brak zadań w crontab.</span></em>
+	</fieldset>
+	<fieldset id="add_task">
+	<legend class="sectionheader">Dodaj zadanie</legend>
+		<div id="add_task_minute_container">
+			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'>Minuta:</label>
+			<input class='rightcolumn' type='text' id='add_task_minute' size='40' />
+		</div>
+		<div id="add_task_minute2_container" class="rightcolumnonly">
+			<input type='checkbox' id='add_task_minute2' />&nbsp;&nbsp;
+			<span class='rightcolumn' id="add_task_minute2">Co podany okres minut</span>
+		</div>
+		<div id="add_task_hour_container">
+			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'>Godzina:</label>
+			<input class='rightcolumn' type='text' id='add_task_hour' size='40' />
+		</div>
+		<div id="add_task_hour2_container" class="rightcolumnonly">
+			<input type='checkbox' id='add_task_hour2' />&nbsp;&nbsp;
+			<span class='rightcolumn' id="add_task_hour2">Co podany okres godzin</span>
+		</div>
+		<div id="add_task_day_container">
+			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'>Dzień:</label>
+			<input class='rightcolumn' type='text' id='add_task_day' size='40' />
+		</div>
+		<div id="add_task_day2_container" class="rightcolumnonly">
+			<input type='checkbox' id='add_task_day2' />&nbsp;&nbsp;
+			<span class='rightcolumn' id="add_task_day2">Co podany dzień</span>
+		</div>
+		<div id="add_task_month_container">
+			<label class='leftcolumn' for='add_task_month' id='add_task_month_label'>Miesiąc:</label>
+			<input class='rightcolumn' type='text' id='add_task_month' size='40' />
+		</div>
+		<div id="add_task_dayweek_container">
+			<label class='leftcolumn' for='add_task_dayweek' id='add_task_dayweek_label'>Dzień tygodnia:</label>
+			<input class='rightcolumn' type='text' id='add_task_dayweek' size='40' />
+		</div>
+		<div id="add_task_container">
+			<label class='leftcolumn' for='add_task' id='add_task_label'>Polecenie do wykonania:</label>
+			<input class='rightcolumn' type='text' id='add_task_month' size='40' />
+		</div>
 	</fieldset>
 	<div id="bottom_button_container">
 			<input type='button' value='Zapisz zmiany' id="save_button" class="bottom_button" onclick='saveChanges()' />
 			<input type='button' value='Anuluj' id="reset_button" class="bottom_button" onclick='resetData()' />
 	</div>
-	<span id="update_container" >Prosz� czeka� na wprowadzenie zmian...</span>
 </form>
 
 
