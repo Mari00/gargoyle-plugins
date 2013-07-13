@@ -52,7 +52,7 @@
 		</div>
 		<div id="log_file_container">
 			<label class='leftcolumn' for='log_file' id='log_file_label'>Plik logów:</label>
-			<input class='rightcolumn' type='text' id='log_file' size='40'  />
+			<input class='rightcolumn' type='text' id='log_file' size='40' />
 		</div>
 		<div id="log_size_container">
 			<label class='leftcolumn' for='log_size' id='log_size_label'>Rozmiar plików (w kB):</label>
@@ -100,7 +100,7 @@
 	<fieldset id="log">
 	<legend class="sectionheader">Logi</legend>
 		<div id="log_on_off_container">
-			<label  class='wideleftcolumn' for='log' id='log_label'>Zapisywanie logów jest teraz:</label>
+			<label class='wideleftcolumn' for='log' id='log_label'>Zapisywanie logów jest teraz:</label>
 				<span class="rightcolumn"style="color:#27c650; display:none;" id="log_on">Uruchomione</span>
 				<span class="rightcolumn" style="color:red; display:none;" id="log_off">Wyłączone</span>
 		</div>
@@ -113,7 +113,7 @@
 	<fieldset id="lastlog">
 	<legend class="sectionheader">Ostatnie logi</legend>
 		<div id="log_line_container">
-			<label  class='leftcolumn' for='logs_line' id='logs_line_label'>Ilość linii:</label>
+			<label class='leftcolumn' for='logs_line' id='logs_line_label'>Ilość linii:</label>
 			<select class='rightcolumn' id="logs_line" onchange="updateLogsTable(); saveLine();">
 				<option value="26">25</option>
 				<option value="51">50</option>

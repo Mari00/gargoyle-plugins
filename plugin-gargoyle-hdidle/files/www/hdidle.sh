@@ -28,7 +28,7 @@
 	blkid | cut -b 1-9,11- | egrep "/dev/sd?" | sed -e 's/LABEL.*UUID=//g' | sed 's/"*//g' | awk '{ print "storageDrives.push([\""$1"\",\""$2"\",\""$3"\"]);" }' 
 	echo "var hdidle_disks_on = [];"
 	ps | grep hd-idle | cut -b 1-6,44- | awk '{if ( $4 == "-i") {print "hdidle_disks_on.push([\""$1"\",\""$3"\",\""$5"\"]);"} }' 
-	swap=$( blkid  | egrep "swap" | cut -b 6-8)
+	swap=$(blkid | egrep "swap" | cut -b 6-8)
 	echo "swap=\"$swap\";"
 
 ?>
