@@ -188,6 +188,10 @@ function getSelectValue(select_id, checkbox_id)
 		
 function resetData()
 {
+	document.getElementById("add_task_script").value = "";
+	document.getElementById("add_task_minute2").checked = false;
+	document.getElementById("add_task_hour2").checked = false;
+	document.getElementById("add_task_day2").checked = false;
 	var commands="cat /etc/crontabs/root 2>/dev/null";
     var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
 	var stateChangeFunction = function(req)
@@ -221,18 +225,32 @@ function resetData()
 	
 	var minute = gen(0, 60)
 	setsAllowableSelections("add_task_minute", minute, minute);
+	clearSelected("add_task_minute");
 	var hour = gen(0, 23)
 	setsAllowableSelections("add_task_hour", hour, hour);
+	clearSelected("add_task_hour");
 	var day = gen(1, 31)
 	setsAllowableSelections("add_task_day", day, day);
+	clearSelected("add_task_day");
 	var month = gen(1, 12)
 	var month_name = new Array("Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień");
 	setsAllowableSelections("add_task_month", month, month_name);
+	clearSelected("add_task_month");
 	var dayweek = gen(0, 6)
 	var dayweek_name = new Array("Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota");
 	setsAllowableSelections("add_task_dayweek", dayweek, dayweek_name);
+	clearSelected("add_task_dayweek");
 }
 
+function clearSelected(option)
+{
+    var element = document.getElementById(option).options;
+	for(var i = 0; i < element.length; i++)
+	{
+		if(element[i].selected)
+		element[i].selected = false;
+    }
+}
 
 function setsAllowableSelections(selectId, allowableValues, allowableNames, controlDocument)
 {
