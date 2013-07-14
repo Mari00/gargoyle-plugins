@@ -403,8 +403,8 @@ function resetData()
 	{
 		storageDrives[driveIndex][1] = storageDrives[driveIndex][1].replace("UUID=", "");
 		storageDrives[driveIndex][2] = storageDrives[driveIndex][1].replace("UUID=", "") + ' (' + storageDrives[driveIndex][0].replace('/dev/', "").substr(0,3) + ')';
-		disk_name.push( storageDrives[driveIndex][1]);
-		disk_name_full.push( storageDrives[driveIndex][2]);
+		disk_name.push(storageDrives[driveIndex][1]);
+		disk_name_full.push(storageDrives[driveIndex][2]);
 	}
 	
 	if(storageDrives.length > 0)

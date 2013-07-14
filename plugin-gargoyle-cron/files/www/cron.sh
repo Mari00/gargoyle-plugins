@@ -35,35 +35,35 @@
 	<legend class="sectionheader">Dodaj zadanie</legend>
 		<div id="add_task_minute_container">
 			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'>Minuta:</label>
-			<input class='rightcolumn' type='text' id='add_task_minute' size='40' />
+			<select class='rightcolumn' id="add_task_minute" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_minute2_container" class="rightcolumnonly">
-			<input type='checkbox' id='add_task_minute2' />&nbsp;&nbsp;
+			<input type='checkbox' id='add_task_minute2' />
 			<span class='rightcolumn' id="add_task_minute2">Co podany okres minut</span>
 		</div>
 		<div id="add_task_hour_container">
 			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'>Godzina:</label>
-			<input class='rightcolumn' type='text' id='add_task_hour' size='40' />
+			<select class='rightcolumn' id="add_task_hour" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_hour2_container" class="rightcolumnonly">
-			<input type='checkbox' id='add_task_hour2' />&nbsp;&nbsp;
+			<input type='checkbox' id='add_task_hour2' />
 			<span class='rightcolumn' id="add_task_hour2">Co podany okres godzin</span>
 		</div>
 		<div id="add_task_day_container">
 			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'>Dzień:</label>
-			<input class='rightcolumn' type='text' id='add_task_day' size='40' />
+			<select class='rightcolumn' id="add_task_day" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_day2_container" class="rightcolumnonly">
-			<input type='checkbox' id='add_task_day2' />&nbsp;&nbsp;
+			<input type='checkbox' id='add_task_day2' />
 			<span class='rightcolumn' id="add_task_day2">Co podany dzień</span>
 		</div>
 		<div id="add_task_month_container">
 			<label class='leftcolumn' for='add_task_month' id='add_task_month_label'>Miesiąc:</label>
-			<input class='rightcolumn' type='text' id='add_task_month' size='40' />
+			<select class='rightcolumn' id="add_task_month" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_dayweek_container">
 			<label class='leftcolumn' for='add_task_dayweek' id='add_task_dayweek_label'>Dzień tygodnia:</label>
-			<input class='rightcolumn' type='text' id='add_task_dayweek' size='40' />
+			<select class='rightcolumn' id="add_task_dayweek" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_container">
 			<label class='leftcolumn' for='add_task' id='add_task_label'>Polecenie do wykonania:</label>
