@@ -59,11 +59,11 @@ function addNewTask()
 		day = getSelectValue("add_task_day", "add_task_day2");
 		month = getSelectValue("add_task_month", false);
 		dayweek = getSelectValue("add_task_dayweek", false);
-		if (minute == '*' && hour.length > 0)
+		if (minute == '*' && hour.length > 0 && hour != '*')
 			minute = 1;
 		values = new Array();
 		values.push(minute + ' ' + hour+ ' ' + day+ ' ' + month+ ' ' + dayweek+ ' ' + task_script);
-		//values.push(createEditButton());
+		values.push(createEditButton());
 		task_table = document.getElementById('task_table_container').firstChild;
 		addTableRow(task_table, values, true, false, false);
 	}
@@ -74,8 +74,84 @@ function createEditButton()
 	var editButton = createInput("button");
 	editButton.value = "Edycja";
 	editButton.className="default_button";
-	//editButton.onclick = editStatic;
+	editButton.onclick = editTask;
 	return editButton;
+}
+
+function editTask()
+{
+	if( typeof(editTaskWindow) != "undefined" )
+	{
+		//opera keeps object around after
+		//window is closed, so we need to deal
+		//with error condition
+		try
+		{
+			editTaskWindow.close();
+		}
+		catch(e){}
+	}
+
+	
+	try
+	{
+		xCoor = window.screenX + 225;
+		yCoor = window.screenY+ 225;
+	}
+	catch(e)
+	{
+		xCoor = window.left + 225;
+		yCoor = window.top + 225;
+	}
+
+
+	editTaskWindow = window.open("cron_task_edit.sh", "edit", "width=560,height=180,left=" + xCoor + ",top=" + yCoor );
+	
+	saveButton = createInput("button", editTaskWindow.document);
+	closeButton = createInput("button", editTaskWindow.document);
+	saveButton.value = "Zamknij i zapisz zmiany";
+	saveButton.className = "default_button";
+	closeButton.value = "Zamknij i anuluj zmiany";
+	closeButton.className = "default_button";
+
+	editRow=this.parentNode.parentNode;
+
+	runOnEditorLoaded = function () 
+	{
+		updateDone=false;
+		if(editTaskWindow.document != null)
+		{
+			if(editTaskWindow.document.getElementById("bottom_button_container") != null)
+			{
+				editTaskWindow.document.getElementById("bottom_button_container").appendChild(saveButton);
+				editTaskWindow.document.getElementById("bottom_button_container").appendChild(closeButton);
+			
+				//set edit values
+				editTaskWindow.document.getElementById("edit_task_script").value = editRow.childNodes[0].firstChild.data;		
+									
+				closeButton.onclick = function()
+				{
+					editTaskWindow.close();
+				}
+				
+				saveButton.onclick = function()
+				{
+					//update document with new data
+					editRow.childNodes[0].firstChild.data = editTaskWindow.document.getElementById("edit_task_script").value;
+						
+					editTaskWindow.close();
+				}
+				editTaskWindow.moveTo(xCoor,yCoor);
+				editTaskWindow.focus();
+				updateDone = true;
+			}
+		}
+		if(!updateDone)
+		{
+			setTimeout( "runOnEditorLoaded()", 250);
+		}
+	}
+	runOnEditorLoaded();
 }
 
 function getSelectValue(select_id, checkbox_id)
@@ -126,10 +202,10 @@ function resetData()
 			for(taskIndex=0; taskLines[taskIndex].match(/^Success/) == null; taskIndex++)
 			{
 				name = taskLines[taskIndex];
-				taskDataTable.push([name]);
-				//createEditButton();
+				taskDataTable.push([name, createEditButton()]);
+
 			}
-			//var columnNames = ['',''];
+			var columnNames = ['',''];
 			var columnNames = [''];
 			var taskTable = createTable(columnNames, taskDataTable, "usbreset_table", true, false);
 			var tableContainer = document.getElementById('task_table_container');

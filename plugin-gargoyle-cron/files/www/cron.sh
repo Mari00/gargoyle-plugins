@@ -33,7 +33,7 @@
 	<legend class="sectionheader">Dodaj zadanie</legend>
 		<div id="add_task_minute_container">
 			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'>Minuta:</label>
-			<select class='rightcolumn' name="add_task_minute[]"  id="add_task_minute" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_minute[]"  id="add_task_minute" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_minute2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_minute2' />
@@ -41,7 +41,7 @@
 		</div>
 		<div id="add_task_hour_container">
 			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'>Godzina:</label>
-			<select class='rightcolumn' name="add_task_hour[]" id="add_task_hour" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_hour[]" id="add_task_hour" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_hour2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_hour2' />
@@ -49,7 +49,7 @@
 		</div>
 		<div id="add_task_day_container">
 			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'>Dzień:</label>
-			<select class='rightcolumn' name="add_task_day[]" id="add_task_day" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_day[]" id="add_task_day" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_day2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_day2' />

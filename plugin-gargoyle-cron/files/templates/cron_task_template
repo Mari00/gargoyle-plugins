@@ -1,0 +1,9 @@
+<table>
+	<tr class='table_row_add_header'>
+		<th><label id='edit_task_script_label' for='edit_task_script'>Zadanie cron</label></th>
+		<th></th>
+	</tr>
+	<tr class='table_row_add'>
+		<td><input type='text' id='edit_task_script'  size='80'/></td>
+	</tr>
+</table>
