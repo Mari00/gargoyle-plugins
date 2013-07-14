@@ -105,7 +105,7 @@ function editTask()
 	}
 
 
-	editTaskWindow = window.open("cron_task_edit.sh", "edit", "width=560,height=180,left=" + xCoor + ",top=" + yCoor );
+	editTaskWindow = window.open("cron_task_edit.sh", "edit", "width=560,height=100,left=" + xCoor + ",top=" + yCoor );
 	
 	saveButton = createInput("button", editTaskWindow.document);
 	closeButton = createInput("button", editTaskWindow.document);

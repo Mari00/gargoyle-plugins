@@ -38,11 +38,11 @@
 <form>
 	<fieldset id="disks">
 		<legend class="sectionheader">Hd-Idle - Ustawienia</legend>
-		<div id="hdidle_enabled_container" class="nocolumn">
+		<div id="hdidle_enabled_container" class="leftcolumn">
 			<input type='checkbox' id='hdidle_enabled' />
-			<label for='hdidle_enabled' id='hdidle_enabled_label'>Hd-Idle</label
+			<label for='hdidle_enabled' id='hdidle_enabled_label'>Hd-Idle</label>
 		</div>
-		<div id="hdidle_enabled_debug_container" class="nocolumn">
+		<div id="hdidle_enabled_debug_container" class="leftcolumn">
 			<input type='checkbox' id='hdidle_enabled_debug' />
 			<label for='hdidle_enabled_debug' id='hdidle_enable_debug_label'>Debug</label>
 		</div>
