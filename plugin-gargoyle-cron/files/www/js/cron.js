@@ -223,7 +223,7 @@ function resetData()
 	}
 	runAjax("POST", "utility/run_commands.sh", param, stateChangeFunction);
 	
-	var minute = gen(0, 60)
+	var minute = gen(0, 59)
 	setsAllowableSelections("add_task_minute", minute, minute);
 	clearSelected("add_task_minute");
 	var hour = gen(0, 23)
