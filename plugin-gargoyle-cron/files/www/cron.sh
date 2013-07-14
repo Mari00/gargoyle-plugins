@@ -22,7 +22,7 @@
 ?>
 <form>
 	<fieldset id="task">
-	<legend class="sectionheader">Zadania crontab</legend>
+	<legend class="sectionheader">Zadania cron</legend>
 			<div id="task_table_container" class='indent'></div>
 	</fieldset>
 	<fieldset id="no_task" style="display:none;">
