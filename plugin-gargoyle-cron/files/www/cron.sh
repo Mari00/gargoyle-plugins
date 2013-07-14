@@ -35,7 +35,7 @@
 	<legend class="sectionheader">Dodaj zadanie</legend>
 		<div id="add_task_minute_container">
 			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'>Minuta:</label>
-			<select class='rightcolumn' id="add_task_minute" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_minute[]"  id="add_task_minute" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_minute2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_minute2' />
@@ -43,7 +43,7 @@
 		</div>
 		<div id="add_task_hour_container">
 			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'>Godzina:</label>
-			<select class='rightcolumn' id="add_task_hour" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_hour[]" id="add_task_hour" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_hour2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_hour2' />
@@ -51,7 +51,7 @@
 		</div>
 		<div id="add_task_day_container">
 			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'>Dzień:</label>
-			<select class='rightcolumn' id="add_task_day" size=7 style="width:80px;" multiple></select>
+			<select class='rightcolumn' name="add_task_day[]" id="add_task_day" size=7 style="width:80px;" multiple></select>
 		</div>
 		<div id="add_task_day2_container" class="rightcolumnonly">
 			<input type='checkbox' id='add_task_day2' />
@@ -59,15 +59,16 @@
 		</div>
 		<div id="add_task_month_container">
 			<label class='leftcolumn' for='add_task_month' id='add_task_month_label'>Miesiąc:</label>
-			<select class='rightcolumn' id="add_task_month" size=7 style="width:90px;" multiple></select>
+			<select class='rightcolumn' name="add_task_month[]" id="add_task_month" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_dayweek_container">
 			<label class='leftcolumn' for='add_task_dayweek' id='add_task_dayweek_label'>Dzień tygodnia:</label>
-			<select class='rightcolumn' id="add_task_dayweek" size=7 style="width:90px;" multiple></select>
+			<select class='rightcolumn' name="add_task_dayweek[]" id="add_task_dayweek" size=7 style="width:90px;" multiple></select>
 		</div>
-		<div id="add_task_container">
-			<label class='leftcolumn' for='add_task' id='add_task_label'>Polecenie do wykonania:</label>
-			<input class='rightcolumn' type='text' id='add_task_month' size='40' />
+		<div id="add_task_script_container">
+			<label class='leftcolumn' for='add_task_script' id='add_task_script_label'>Polecenie do wykonania:</label>
+			<input class='rightcolumn' type='text' id='add_task_script' size='40' />
+			<input type="button" class="default_button" id="add_new_task_button" value="Dodaj" onclick="addNewTask()" />
 		</div>
 	</fieldset>
 	<div id="bottom_button_container">
