@@ -22,12 +22,12 @@
 	taskTable = document.getElementById('task_table_container').firstChild;	
 	tableData = getTableDataArray(taskTable, true, false);
 	
-	createCommands = [ "touch /tmp/root", "rm /tmp/root" ];
+	createCommands = [ "touch /etc/crontabs/root", "rm /etc/crontabs/root" ];
 	taskTableData = new Array();
 	for (rowIndex in tableData)
 	{
 		rowData = tableData[rowIndex];
-		createCommands.push("echo \"" + rowData[0].replace(/"/g,"\\\"") + "\" >> /tmp/root");
+		createCommands.push("echo \"" + rowData[0].replace(/"/g,"\\\"") + "\" >> /etc/crontabs/root");
 	}
 	var commands = createCommands.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
@@ -59,12 +59,23 @@ function addNewTask()
 		day = getSelectValue("add_task_day", "add_task_day2");
 		month = getSelectValue("add_task_month", false);
 		dayweek = getSelectValue("add_task_dayweek", false);
-		//document.write(minute + ' ' + hour+ ' ' + day+ ' ' + month+ ' ' + dayweek+ ' ' + task_script);
+		if (minute == '*' && hour.length > 0)
+			minute = 1;
 		values = new Array();
 		values.push(minute + ' ' + hour+ ' ' + day+ ' ' + month+ ' ' + dayweek+ ' ' + task_script);
+		//values.push(createEditButton());
 		task_table = document.getElementById('task_table_container').firstChild;
-		addTableRow(task_table, values, true, true, false);
+		addTableRow(task_table, values, true, false, false);
 	}
+}
+
+function createEditButton()
+{
+	var editButton = createInput("button");
+	editButton.value = "Edycja";
+	editButton.className="default_button";
+	//editButton.onclick = editStatic;
+	return editButton;
 }
 
 function getSelectValue(select_id, checkbox_id)
@@ -99,11 +110,9 @@ function getSelectValue(select_id, checkbox_id)
 		return '*';
 }
 		
-
- 
 function resetData()
 {
-	var commands="cat /tmp/root 2>/dev/null";
+	var commands="cat /etc/crontabs/root 2>/dev/null";
     var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
 	var stateChangeFunction = function(req)
     {
@@ -116,12 +125,13 @@ function resetData()
 			document.getElementById("no_task").style.display = taskLines[0].match(/^Success/) == null ? "none" : "block";
 			for(taskIndex=0; taskLines[taskIndex].match(/^Success/) == null; taskIndex++)
 			{
-				var name = taskLines[taskIndex];
-				taskDataTable.push([''+name,]);	
+				name = taskLines[taskIndex];
+				taskDataTable.push([name]);
+				//createEditButton();
 			}
-			
+			//var columnNames = ['',''];
 			var columnNames = [''];
-			var taskTable = createTable(columnNames, taskDataTable, "usbreset_table", true, true);
+			var taskTable = createTable(columnNames, taskDataTable, "usbreset_table", true, false);
 			var tableContainer = document.getElementById('task_table_container');
 			if(tableContainer.firstChild != null)
 			{

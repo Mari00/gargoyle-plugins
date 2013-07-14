@@ -20,8 +20,6 @@
 	eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_USER_AGENT" -i "$REMOTE_ADDR" -r "login.sh" -t $(uci get gargoyle.global.session_timeout) -b "$COOKIE_browser_time"  )
 	gargoyle_header_footer -h -s "connection" -p "cron" -c "internal.css" -j "table.js cron.js"
 ?>
-
-
 <form>
 	<fieldset id="task">
 	<legend class="sectionheader">Zadania crontab</legend>
