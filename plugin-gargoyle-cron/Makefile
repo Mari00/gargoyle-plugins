@@ -34,9 +34,9 @@ define Package/plugin-gargoyle-cron/postinst
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci set gargoyle.display.connection_cron='Zadania cron'
-	uci set gargoyle.scripts.connection_cron='cron.sh'
-	uci set gargoyle.connection.cron='700'
+	uci set gargoyle.display.system_cron='Zadania cron'
+	uci set gargoyle.scripts.system_cron='cron.sh'
+	uci set gargoyle.system.cron='314'
 	uci commit
 fi
 endef
@@ -45,9 +45,9 @@ define Package/plugin-gargoyle-cron/postrm
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci del gargoyle.display.connection_cron
-	uci del gargoyle.scripts.connection_cron
-	uci del gargoyle.connection.cron
+	uci del gargoyle.display.system_cron
+	uci del gargoyle.scripts.system_cron
+	uci del gargoyle.system.cron
 	uci commit
 fi
 endef
