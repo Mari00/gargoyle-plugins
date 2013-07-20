@@ -20,6 +20,31 @@
 	eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_USER_AGENT" -i "$REMOTE_ADDR" -r "login.sh" -t $(uci get gargoyle.global.session_timeout) -b "$COOKIE_browser_time"  )
 	gargoyle_header_footer -h -s "system" -p "usbreset" -c "internal.css" -j "table.js usbreset.js"
 ?>
+
+<script>
+<!--
+<?
+	gpiousbpower=0;
+	gpiousbpower2=0;
+	if [ -e /tmp/sysinfo/board_name ]; then
+		board=$(cat /tmp/sysinfo/board_name)
+		case "$board" in
+			"tl-wr703n")	gpiousbpower=8;;
+			"tl-mr3020")	gpiousbpower=8;;
+			"tl-mr11u")	gpiousbpower=8;;
+			"tl-mr3040")	gpiousbpower=18;;
+			"tl-mr3220")	gpiousbpower=6;;
+			"tl-mr3420")	gpiousbpower=6;;
+			"tl-wdr3500")	gpiousbpower=12;;
+			"tl-wdr4300")	gpiousbpower=21; gpiousbpower2=22;;
+		esac
+	fi
+	echo "var gpiousbpower=$gpiousbpower;"
+	echo "var gpiousbpower2=$gpiousbpower2;"
+?>
+//-->
+</script>
+
 <form>
 	<fieldset id="usbreset">
 	<legend class="sectionheader">Urządzenia USB</legend>
@@ -29,13 +54,21 @@
 	</fieldset>
 </form>
 
+<fieldset id="usbpower" style="display:none;">
+	<legend class="sectionheader">Zasilanie USB</legend>
+	<div>
+		<span class='rightcolumnonly'>
+			<input type='button' class='default_button' id='usb_on_button' value="Włącz" onclick='USBPower("1")'/>
+			<input type='button' class='default_button' id='usb_off_button' value="Wyłącz" onclick='USBPower("0")'/>
+		</span>
+	</div>
+</fieldset>
 
 <script>
 <!--
 	resetData();
 //-->
 </script>
-
 
 <?
 	gargoyle_header_footer -f -s "system" -p "usbreset"
