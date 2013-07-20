@@ -128,8 +128,11 @@ function resetData()
 
 function USBPower(value)
 {
-	if(!confirm("Wyłącznie zasilania USB może być niebezpieczne jeżeli używany jest modem 3G lub nośnik pamięci USB. Kontynuować?"))
-	{ return; }
+	if (value == 0)
+	{
+		if(!confirm("Wyłącznie zasilania USB może być niebezpieczne jeżeli używany jest modem 3G lub nośnik pamięci USB. Kontynuować?"))
+		{ return; }
+	}
 
 	if (gpiousbpower2 > 0)
 	{
