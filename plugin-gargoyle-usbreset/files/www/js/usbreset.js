@@ -22,44 +22,55 @@ var devUpdater = null;
 
 function updateDevTable()
 {
-    if(!updateInProgress)
+	if(!updateInProgress)
 	{
-		var commands="usbreset";
-        var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
+		var commands;
+		if (gpiousbpower==0)
+		{
+			commands="echo 0;usbreset";
+		}
+		else
+		{
+			commands="cat /sys/class/gpio/gpio"+gpiousbpower+"/value;usbreset";
+		}
+		var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
 		var stateChangeFunction = function(req)
-        {
+		{
 			if(req.readyState == 4)
-            {
+			{
 				var devLines = req.responseText.split(/[\n\r]+/);
 				var devDataTable = new Array();
 				var devIndex;
-				for(devIndex=5; devLines[devIndex].match(/^Success/) == null; devIndex++)
+
+				setElementEnabled(document.getElementById("usb_on_button"), devLines[0]=="0", false);
+				setElementEnabled(document.getElementById("usb_off_button"), devLines[0]=="1", false);
+
+				for(devIndex=6; devLines[devIndex].match(/^Success/) == null; devIndex++)
 				{
-					var lp = devIndex-4;
+					var lp = devIndex-5;
 					var button = createInput("button");
 					button.className="default_button";
 					button.value = "Resetuj";
 					button.onclick = resetUSB;
 					var name = devLines[devIndex].substr(30);
 					var id = devLines[devIndex].substr(21,9);
-					devDataTable.push([''+lp, name, id, button]);	
+					devDataTable.push([''+lp, name, id, button]);
 				}
-				
-				var columnNames = ['Lp.', 'Nazwa', 'Id', ''];
+
+				var columnNames = ['Lp.', 'Nazwa', 'VID/PID', ''];
 				var devTable = createTable(columnNames, devDataTable, "usbreset_table", false, false, true);
 				var tableContainer = document.getElementById('usbreset_table_container');
 				if(tableContainer.firstChild != null)
 				{
 					tableContainer.removeChild(tableContainer.firstChild);
-				}	
+				}
 				tableContainer.appendChild(devTable)
 				updateInProgress = false;
 			}
 		}
-		 runAjax("POST", "utility/run_commands.sh", param, stateChangeFunction);	
+		 runAjax("POST", "utility/run_commands.sh", param, stateChangeFunction);
 	}
 }
-
 
 function reloadPage()
 {
@@ -79,7 +90,6 @@ function reloadPage()
 	}
 }
 
-
 function resetUSB()
 {
 		var id=this.parentNode.parentNode.childNodes[2].firstChild.data;
@@ -92,7 +102,7 @@ function execute(cmd,reload)
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
 	setControlsEnabled(false, true, "Proszę czekać...");
-        
+
 	var stateChangeFunction = function(req)
 	{
 		if(req.readyState == 4)
@@ -106,10 +116,30 @@ function execute(cmd,reload)
 
 function resetData()
 {
+		document.getElementById("usbpower").style.display = gpiousbpower==0?"none":"block";
+		
 		updateDevTable();
 		if(devUpdater != null)
 		{
 			clearInterval(devUpdater);
 		}
 		devUpdater = setInterval("updateDevTable()", 10000); //check for updates every 10 seconds
+}
+
+function USBPower(value)
+{
+	if (value == 0)
+	{
+		if(!confirm("Wyłącznie zasilania USB może być niebezpieczne jeżeli używany jest modem 3G lub nośnik pamięci USB. Kontynuować?"))
+		{ return; }
+	}
+
+	if (gpiousbpower2 > 0)
+	{
+		execute(["echo " + value +" > /sys/class/gpio/gpio"+gpiousbpower+"/value","echo " + value +" > /sys/class/gpio/gpio"+gpiousbpower2+"/value"]);
+	}
+	else
+	{
+		execute(["echo " + value +" > /sys/class/gpio/gpio"+gpiousbpower+"/value"]);
+	}
 }
