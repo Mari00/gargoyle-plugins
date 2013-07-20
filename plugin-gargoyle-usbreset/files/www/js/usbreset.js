@@ -1,4 +1,5 @@
 /*
+ *     Copyright (c) 2013 Obsy
  *     Copyright (c) 2013 Saski
  *
  *     This program is free software; you can redistribute it and/or modify
