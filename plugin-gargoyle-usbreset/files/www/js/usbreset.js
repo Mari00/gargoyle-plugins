@@ -81,11 +81,9 @@ function reloadPage()
 		//We can test if it's loaded for real by looking at the (IE only) readyState property
 		//For Browsers NOT designed by dysfunctional cretins whose mothers were a pack of sewer-dwelling, shit-eating rodents,
 		//well, for THOSE browsers, readyState (and therefore reloadState) should be null 
-		var reloadState = document.getElementById("reboot_test").readyState;
 		if( typeof(reloadState) == "undefined" || reloadState == null || reloadState == "complete")
 		{
 			toggleReload = false;
-			document.getElementById("reboot_test").src = "";
 			window.location.href = window.location.href;
 		}
 	}
@@ -98,7 +96,7 @@ function resetUSB()
 		execute(cmd);
 }
 
-function execute(cmd,reload)
+function execute(cmd)
 {
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));

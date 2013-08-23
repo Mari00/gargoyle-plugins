@@ -123,13 +123,9 @@
 		</div>
 		<div id="lastlog_table_container" class='indent'></div>
 	</fieldset>
-	<span id="update_container" >Proszę czekać na wprowadzenie zmian...</span>
 </form>
 
 <iframe id="reboot_test" onload="reloadPage()" style="display:none" ></iframe>
-
-<!-- <br /><textarea style="margin-left:20px;" rows=30 cols=60 id='output'></textarea> -->
-
 
 <script>
 <!--
@@ -138,7 +134,6 @@
 	unlockLogsServ();
 //-->
 </script>
-
 
 <?
 	gargoyle_header_footer -f -s "system" -p "logs"

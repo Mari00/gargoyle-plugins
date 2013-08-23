@@ -75,13 +75,11 @@
 	</div>
 </form>
 
-
 <script>
 <!--
 	resetData();
 //-->
 </script>
-
 
 <?
 	gargoyle_header_footer -f -s "system" -p "cron"

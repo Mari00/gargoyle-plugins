@@ -187,7 +187,7 @@ function killProces()
 	}
 }
 
-function execute(cmd,reload)
+function execute(cmd)
 {
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));

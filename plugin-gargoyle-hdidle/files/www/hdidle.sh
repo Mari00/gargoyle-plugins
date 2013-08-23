@@ -93,11 +93,7 @@
 		<input type='button' value='Zapisz zmiany' id="save_button" class="bottom_button" onclick='saveChanges()' />
 		<input type='button' value='Anuluj' id="reset_button" class="bottom_button" onclick='resetData()'/>
 	</div>
-	<span id="update_container" >Proszę czekać na wprowadzenie zmian...</span>
 </form>
-
-<!-- <br /><textarea style="margin-left:20px;" rows=30 cols=60 id='output'></textarea> -->
-
 
 <script>
 <!--
@@ -105,7 +101,6 @@
 	swapBlock();
 //-->
 </script>
-
 
 <?
 	gargoyle_header_footer -f -s "system" -p "hdidle"
