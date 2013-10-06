@@ -1,5 +1,5 @@
 #!/usr/bin/haserl
-<?
+<%
 #      Copyright (c) 2013 Obsy
 #      Copyright (c) 2013 Saski
 #
@@ -19,12 +19,12 @@
 #      MA 02110-1301, USA.
 
 	eval $( gargoyle_session_validator -c "$COOKIE_hash" -e "$COOKIE_exp" -a "$HTTP_USER_AGENT" -i "$REMOTE_ADDR" -r "login.sh" -t $(uci get gargoyle.global.session_timeout) -b "$COOKIE_browser_time"  )
-	gargoyle_header_footer -h -s "system" -p "usbreset" -c "internal.css" -j "table.js usbreset.js"
-?>
+	gargoyle_header_footer -h -s "system" -p "usbreset" -c "internal.css" -j "table.js usbreset.js" -z "usbreset.js"
+%>
 
 <script>
 <!--
-<?
+<%
 	gpiousbpower=0;
 	gpiousbpower2=0;
 	if [ -e /tmp/sysinfo/board_name ]; then
@@ -42,13 +42,13 @@
 	fi
 	echo "var gpiousbpower=$gpiousbpower;"
 	echo "var gpiousbpower2=$gpiousbpower2;"
-?>
+%>
 //-->
 </script>
 
 <form>
 	<fieldset id="usbreset">
-	<legend class="sectionheader">Urządzenia USB</legend>
+	<legend class="sectionheader"><%~ usbreset.Devs %></legend>
 		<div class='indent'>
 			<div id="usbreset_table_container"></div>
 		</div>
@@ -56,11 +56,11 @@
 </form>
 
 <fieldset id="usbpower" style="display:none;">
-	<legend class="sectionheader">Zasilanie USB</legend>
+	<legend class="sectionheader"><%~ Power %></legend>
 	<div>
 		<span class='rightcolumnonly'>
-			<input type='button' class='default_button' id='usb_on_button' value="Włącz" onclick='USBPower("1")'/>
-			<input type='button' class='default_button' id='usb_off_button' value="Wyłącz" onclick='USBPower("0")'/>
+			<input type='button' class='default_button' id='usb_on_button' value='<%~ On %>' onclick='USBPower("1")'/>
+			<input type='button' class='default_button' id='usb_off_button' value='<%~ Off %>' onclick='USBPower("0")'/>
 		</span>
 	</div>
 </fieldset>
@@ -71,6 +71,6 @@
 //-->
 </script>
 
-<?
+<%
 	gargoyle_header_footer -f -s "system" -p "usbreset"
-?>
+%>

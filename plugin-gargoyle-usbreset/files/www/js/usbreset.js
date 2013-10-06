@@ -1,4 +1,4 @@
-/*
+﻿/*
  *     Copyright (c) 2013 Obsy
  *     Copyright (c) 2013 Saski
  *
@@ -17,6 +17,8 @@
  *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *     MA 02110-1301, USA.
  */
+var usbReset=new Object(); //part of i18n
+ 
 var toggleReload = false;
 var updateInProgress;
 var devUpdater = null;
@@ -51,14 +53,14 @@ function updateDevTable()
 					var lp = devIndex-5;
 					var button = createInput("button");
 					button.className="default_button";
-					button.value = "Resetuj";
+					button.value = usbReset.Reset;
 					button.onclick = resetUSB;
 					var name = devLines[devIndex].substr(30);
 					var id = devLines[devIndex].substr(21,9);
 					devDataTable.push([''+lp, name, id, button]);
 				}
 
-				var columnNames = ['Lp.', 'Nazwa', 'VID/PID', ''];
+				var columnNames = usbReset.DevsColumn;
 				var devTable = createTable(columnNames, devDataTable, "usbreset_table", false, false, true);
 				var tableContainer = document.getElementById('usbreset_table_container');
 				if(tableContainer.firstChild != null)
@@ -100,7 +102,7 @@ function execute(cmd)
 {
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
-	setControlsEnabled(false, true, "Proszę czekać...");
+	setControlsEnabled(false, true, UI.Wait);
 
 	var stateChangeFunction = function(req)
 	{
@@ -129,7 +131,7 @@ function USBPower(value)
 {
 	if (value == 0)
 	{
-		if(!confirm("Wyłącznie zasilania USB może być niebezpieczne jeżeli używany jest modem 3G lub nośnik pamięci USB. Kontynuować?"))
+		if(!confirm(usbReset.ResConf))
 		{ return; }
 	}
 
