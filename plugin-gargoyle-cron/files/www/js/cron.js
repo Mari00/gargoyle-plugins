@@ -16,6 +16,7 @@
  *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *     MA 02110-1301, USA.
  */
+var cron=new Object(); //part of i18n
 
  function saveChanges()
 {
@@ -31,7 +32,7 @@
 	}
 	var commands = createCommands.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
-	setControlsEnabled(false, true, "Proszę czekać...");
+	setControlsEnabled(false, true, UI.Wait);
         
 	var stateChangeFunction = function(req)
 	{
@@ -49,7 +50,7 @@ function addNewTask()
 	var task_script  = document.getElementById("add_task_script").value;
 	if(task_script == "")
 	{
-		alert("Brak skryptu do wykonania.");
+		alert(cron.NoScript);
 		return;
 	}
 	else
@@ -72,7 +73,7 @@ function addNewTask()
 function createEditButton()
 {
 	var editButton = createInput("button");
-	editButton.value = "Edycja";
+	editButton.value = UI.Edit;
 	editButton.className="default_button";
 	editButton.onclick = editTask;
 	return editButton;
@@ -109,9 +110,9 @@ function editTask()
 	
 	saveButton = createInput("button", editTaskWindow.document);
 	closeButton = createInput("button", editTaskWindow.document);
-	saveButton.value = "Zamknij i zapisz zmiany";
+	saveButton.value = UI.CApplyChanges;
 	saveButton.className = "default_button";
-	closeButton.value = "Zamknij i anuluj zmiany";
+	closeButton.value = UI.CDiscardChanges;
 	closeButton.className = "default_button";
 
 	editRow=this.parentNode.parentNode;
@@ -211,7 +212,7 @@ function resetData()
 			}
 			var columnNames = ['',''];
 			var columnNames = [''];
-			var taskTable = createTable(columnNames, taskDataTable, "usbreset_table", true, false);
+			var taskTable = createTable(columnNames, taskDataTable, "task_table", true, false);
 			var tableContainer = document.getElementById('task_table_container');
 			if(tableContainer.firstChild != null)
 			{
@@ -233,11 +234,12 @@ function resetData()
 	setsAllowableSelections("add_task_day", day, day);
 	clearSelected("add_task_day");
 	var month = gen(1, 12)
-	var month_name = new Array("Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień");
+	var month_name = new Array;
+	var month_name = cron.Months
 	setsAllowableSelections("add_task_month", month, month_name);
 	clearSelected("add_task_month");
 	var dayweek = gen(0, 6)
-	var dayweek_name = new Array("Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota");
+	var dayweek_name = new Array(UI.Sunday, UI.Monday, UI.Tuesday, UI.Wednesday, UI.Thursday, UI.Friday, UI.Saturday);
 	setsAllowableSelections("add_task_dayweek", dayweek, dayweek_name);
 	clearSelected("add_task_dayweek");
 }

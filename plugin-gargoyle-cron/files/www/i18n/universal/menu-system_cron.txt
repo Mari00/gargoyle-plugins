@@ -1,0 +1,3 @@
+fallback=Cron tasks
+EN=Cron tasks
+PL=Zadania cron
