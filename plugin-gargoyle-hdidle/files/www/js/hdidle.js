@@ -147,7 +147,7 @@ function resetData()
 			button.className="default_button";
 			button.value = hdidle.KillProc;
 			button.onclick = killProces;
-			hdidleTableProces.push([''+lp, time+hdidle.MinS, disk_name_ps, pid, button]);
+			hdidleTableProces.push([''+lp, time+' '+UI.minutes, disk_name_ps, pid, button]);
 		}
 		if (hdidleTableProces.length != 0)
 		{

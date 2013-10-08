@@ -12,11 +12,8 @@ hdidle.Min="Minutes";
 hdidle.TimeI="Idle Time Interval";
 hdidle.NoDisk="No mounted USB disks detected.";
 hdidle.HdIdIs="Hd-Idle is";
-hdidle.On="Enabled";
-hdidle.Off="Disabled";
 
 //javascript
 hdidle.ColNames=['No.', 'Idle Time', 'Disk', 'PID', ''];
 hdidle.KillProc="End process";
-hdidle.MinS="min.";
 hdidle.KillProcQ="End the process?";

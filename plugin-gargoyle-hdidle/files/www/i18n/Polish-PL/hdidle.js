@@ -12,11 +12,8 @@ hdidle.Min="Minuty";
 hdidle.TimeI="Wartość bezczynności";
 hdidle.NoDisk="Nie wykryto żadnego zamontowanego nośnika USB.";
 hdidle.HdIdIs="Hd-Idle jest teraz";
-hdidle.On="Uruchomiony";
-hdidle.Off="Wyłączony";
 
 //javascript
 hdidle.ColNames=['Lp', 'Czas bezczynności', 'Napęd', 'PID', ''];
 hdidle.KillProc="Zakończ proces";
-hdidle.MinS="min.";
 hdidle.KillProcQ="Zakończyć proces?";

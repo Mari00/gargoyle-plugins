@@ -81,8 +81,8 @@
 	<legend class="sectionheader"><%~ HdId %></legend>
 		<div id="hdidle_on_off_container">
 			<label class='leftcolumn' for='hdidle' id='hdidle_label'><%~ HdIdIs %> :</label>
-				<span class="rightcolumn"style="color:#27c650; display:none;" id="hdidle_on"><%~ On %></span>
-				<span class="rightcolumn" style="color:red; display:none;" id="hdidle_off"><%~ Off %></span>
+				<span class="rightcolumn"style="color:#27c650; display:none;" id="hdidle_on"><%~ Disabled %></span>
+				<span class="rightcolumn" style="color:red; display:none;" id="hdidle_off"><%~ Enabled %></span>
 		</div>
 		<div class='indent'>
 			<div id="hdidle_table_container"></div>
