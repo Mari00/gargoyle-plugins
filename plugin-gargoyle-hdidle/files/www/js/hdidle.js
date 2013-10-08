@@ -17,6 +17,8 @@
  *     MA 02110-1301, USA.
  */
 
+ var hdidle=new Object(); //part of i18n
+ 
 function saveChanges()
 {
 	var disk  = getSelectedValue("hdidle_disk");
@@ -133,7 +135,7 @@ function resetData()
 	
 	if(hdidle_disks_on.length >= 1)
 	{
-		var columnNames = ['Lp', 'Czas bezczynności', 'Napęd', 'PID', ''];
+		var columnNames = hdidle.ColNames;
 		var hdidleTableProces = new Array();
 		for(procesIndex=0; procesIndex < hdidle_disks_on.length; procesIndex++)
 		{
@@ -143,9 +145,9 @@ function resetData()
 			var pid = hdidle_disks_on[procesIndex][0];
 			var button = createInput("button");
 			button.className="default_button";
-			button.value = "Zakończ proces";
+			button.value = hdidle.KillProc;
 			button.onclick = killProces;
-			hdidleTableProces.push([''+lp, time+' min.', disk_name_ps, pid, button]);
+			hdidleTableProces.push([''+lp, time+hdidle.MinS, disk_name_ps, pid, button]);
 		}
 		if (hdidleTableProces.length != 0)
 		{
@@ -179,7 +181,7 @@ function swapBlock()
 
 function killProces()
 {
-	if(confirm("Zakończyć proces?"))
+	if(confirm(hdidle.KillProcQ))
 	{
 		var pidKill=this.parentNode.parentNode.childNodes[3].firstChild.data;
 		var cmd = [ "kill -9 " + pidKill ];
@@ -191,7 +193,7 @@ function execute(cmd)
 {
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
-	setControlsEnabled(false, true, "Proszę czekać...");
+	setControlsEnabled(false, true, UI.Wait);
         
 	var stateChangeFunction = function(req)
 	{

@@ -1,0 +1,3 @@
+fallback=Hd-Idle
+EN=Hd-Idle
+PL=Hd-Idle
