@@ -1,5 +1,5 @@
 ﻿/*
- * UTF-8 (with BOM) English-EN text strings for about.sh html elements
+ * UTF-8 (with BOM) English-EN text strings for cron.sh html elements
  */
 
 cron.Tasks="Cron tasks";

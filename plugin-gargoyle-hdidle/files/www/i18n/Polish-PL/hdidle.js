@@ -1,5 +1,5 @@
 ﻿/*
- * UTF-8 (with BOM) Polish-PL text strings for about.sh html elements
+ * UTF-8 (with BOM) Polish-PL text strings for hdidle.sh html elements
  */
 
 hdidle.Set="Hd-Idle - Ustawienia";

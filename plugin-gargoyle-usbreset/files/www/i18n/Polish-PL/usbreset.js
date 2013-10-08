@@ -1,5 +1,5 @@
 ﻿/*
- * UTF-8 (with BOM) Polish-PL text strings for about.sh html elements
+ * UTF-8 (with BOM) Polish-PL text strings for usbreset.sh html elements
  */
 
 usbReset.Devs="Urządzenia USB";
