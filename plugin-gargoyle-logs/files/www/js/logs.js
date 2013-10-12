@@ -43,7 +43,7 @@ function updateLogsTable()
 				var logsLines = req.responseText.split(/[\n\r]+/);
 				var logsDataTable = new Array();
 				var logsIndex;
-				var monthNames = { "Jan" : "Sty", "Feb" : "Lut", "Mar" : "Mar", "Apr" : "Kwi", "May" : "Maj", "Jun" : "Cze", "Jul" : "Lip", "Aug" : "Sie", "Sep" : "Wrz", "Oct" :"Paź", "Nov" : "Lis", "Dec" : "Gru" };
+				var monthNames = { "Jan" : UI.EMonths[0], "Feb" : UI.EMonths[1], "Mar" : UI.EMonths[2], "Apr" : UI.EMonths[3], "May" : UI.EMonths[4], "Jun" : UI.EMonths[5], "Jul" : UI.EMonths[6], "Aug" : UI.EMonths[7], "Sep" : UI.EMonths[8], "Oct" : UI.EMonths[9], "Nov" : UI.EMonths[10], "Dec" : UI.EMonths[11] };
 				document.getElementById("log").style.display = logsLines[0].match(/^Success/) == null ? "block" : "none";
 				document.getElementById("no_log").style.display = logsLines[0].match(/^Success/) == null ? "none" : "block";
 				document.getElementById("lastlog").style.display =  logsLines[0].match(/^Success/) == null ? "block" : "none";
