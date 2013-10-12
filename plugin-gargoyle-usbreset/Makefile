@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=plugin_gargoyle_usbreset
-PKG_VERSION:=20131006
+PKG_VERSION:=20131012
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -34,7 +34,11 @@ define Package/plugin-gargoyle-usbreset/postinst
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci set gargoyle.display.system_usbreset='USBreset'
+	menu_name="USBreset"
+	[ -n `which i18n` ] && {
+		menu_name=$$(i18n-menu gargoyle.display.system_hdidle)
+	}
+	uci set gargoyle.display.system_usbreset="$$menu_name"
 	uci set gargoyle.scripts.system_usbreset='usbreset.sh'
 	uci set gargoyle.system.usbreset='317'
 	uci commit

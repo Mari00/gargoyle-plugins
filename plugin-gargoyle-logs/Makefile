@@ -34,7 +34,11 @@ define Package/plugin-gargoyle-logs/postinst
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci set gargoyle.display.system_logs='Logs'
+	menu_name="Logs"
+	[ -n `which i18n` ] && {
+		menu_name=$$(i18n-menu gargoyle.display.system_hdidle)
+	}
+	uci set gargoyle.display.system_logs="$$menu_name"
 	uci set gargoyle.scripts.system_logs='logs.sh'
 	uci set gargoyle.system.logs='316'
 	uci commit

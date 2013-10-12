@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=plugin_gargoyle_cron
-PKG_VERSION:=20131008
+PKG_VERSION:=20131012
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -34,7 +34,11 @@ define Package/plugin-gargoyle-cron/postinst
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci set gargoyle.display.system_cron='Cron tasks'
+	menu_name="Cron tasks"
+	[ -n `which i18n` ] && {
+		menu_name=$$(i18n-menu gargoyle.display.system_cron)
+	}
+	uci set gargoyle.display.system_cron="$$menu_name"
 	uci set gargoyle.scripts.system_cron='cron.sh'
 	uci set gargoyle.system.cron='314'
 	uci commit
