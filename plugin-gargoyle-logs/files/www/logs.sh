@@ -47,7 +47,7 @@
 			</select>
 		</div>
 		<div id="log_disk_container">
-			<label class='leftcolumn' for='log_disk' id='log_disk_label'><%~ Disk %></label>
+			<label class='leftcolumn' for='log_disk' id='log_disk_label'><%~ Disk %>:</label>
 			<select class='rightcolumn' id="log_disk"></select>
 		</div>
 		<div id="log_file_container">
