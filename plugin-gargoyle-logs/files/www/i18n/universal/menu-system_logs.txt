@@ -1,0 +1,3 @@
+fallback=Logs
+EN=Logs
+PL=Logi

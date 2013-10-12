@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=plugin_gargoyle_logs
-PKG_VERSION:=20130823
+PKG_VERSION:=20131012
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -34,7 +34,7 @@ define Package/plugin-gargoyle-logs/postinst
 #!/bin/sh
 
 if [ -z "$${IPKG_INSTROOT}" ]; then
-	uci set gargoyle.display.system_logs='Logi'
+	uci set gargoyle.display.system_logs='Logs'
 	uci set gargoyle.scripts.system_logs='logs.sh'
 	uci set gargoyle.system.logs='316'
 	uci commit

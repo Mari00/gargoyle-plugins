@@ -14,6 +14,6 @@ hdidle.NoDisk="Nie wykryto żadnego zamontowanego nośnika USB.";
 hdidle.HdIdIs="Hd-Idle jest teraz";
 
 //javascript
-hdidle.ColNames=['Lp', 'Czas bezczynności', 'Napęd', 'PID', ''];
+hdidle.ColNames=['Lp.', 'Czas bezczynności', 'Napęd', 'PID', ''];
 hdidle.KillProc="Zakończ proces";
 hdidle.KillProcQ="Zakończyć proces?";

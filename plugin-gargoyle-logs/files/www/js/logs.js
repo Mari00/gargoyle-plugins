@@ -16,6 +16,8 @@
  *     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  *     MA 02110-1301, USA.
  */
+var logs=new Object(); //part of i18n
+
 var toggleReload = false;
 var updateInProgress;
 var logsUpdater = null;
@@ -54,7 +56,7 @@ function updateLogsTable()
 					var desc = logsLines[logsIndex].substr(16);
 					logsDataTable.push(['\n'+logsIndex+'\n\n', month, day, hour, desc]);	
 				}
-				var columnNames = ['Lp.', 'Miesiąc', 'Dzień', 'Godzina', 'Opis'];
+				var columnNames = logs.ColNamesLast;
 				var logsTable = createTable(columnNames, logsDataTable, "lastlog_table", false, false, true);
 				var tableContainer = document.getElementById('lastlog_table_container');
 				if(tableContainer.firstChild != null)
@@ -70,7 +72,7 @@ function updateLogsTable()
 }
 function reboot()
 {
-	setControlsEnabled(false, true, "Nastąpi ponowne uruchomienie systemu");
+	setControlsEnabled(false, true, logs.Reb);
 	
 	var commands = "\nsh /usr/lib/gargoyle/reboot.sh\n";
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
@@ -159,7 +161,7 @@ function saveChanges()
 		}
 	}
 	runAjax("POST", "utility/run_commands.sh", param, stateChangeFunction);
-	if(confirm("Należy ponownie uruchomić urządzenie."))
+	if(confirm(logs.RebCon))
 	{
 		reboot();
 	}
@@ -232,7 +234,7 @@ function delLogs()
 	var file = uciOriginal.get("system", systemSections[0], "log_file");
 	row = this.parentNode.parentNode;
 	index = row.childNodes[3].firstChild.id;
-	if(confirm("Usunąć plik z logami: "+file+index+"?"))
+	if(confirm(logs.LogDel+": "+file+index+"?"))
 	{
 		var cmd = [ "rm " + file+index ];
 		execute(cmd);
@@ -242,7 +244,7 @@ function delLogs()
 function killProces()
 {
 	var pidKill = log_on[0][0];
-	if(confirm("Zakończyć proces "+pidKill+"?"))
+	if(confirm(logs.KillProc+": "+pidKill+"?"))
 	{
 		var cmd = [ "kill -9 " + pidKill ];
 		execute(cmd);
@@ -253,7 +255,7 @@ function execute(cmd)
 {
 	var commands = cmd.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
-	setControlsEnabled(false, true, "Proszę czekać...");
+	setControlsEnabled(false, true, UI.Wait);
         
 	var stateChangeFunction = function(req)
 	{
@@ -347,12 +349,12 @@ function resetData()
 				var file0 = "";
 			if (log_on[0][2] == "" || type == "" || type == null || type == "circular")
 			{
-				var columnNames = ['', '', 'Logi:'];
-				var logT = "Przechowywane w pamięci";
+				var columnNames = logs.ColNamesC;
+				var logT = logs.InCirc;
 			}
 			else
 			{
-				var columnNames = ['', 'Rozmiar', '', 'Logi:'];
+				var columnNames = logs.ColNamesF;
 				var re = new RegExp("^[a-z A-Z 0-9 -]+\/", "g");
 				var logT = log_file[lp][1];
 				var logT = logT.replace("/tmp/usb_mount/", "").replace(re, "");
@@ -360,23 +362,23 @@ function resetData()
 			var file_size = log_file[lp][0];
 			var button1 = createInput("button");
 			button1.className="default_button";
-			button1.value = "Zakończ proces";
+			button1.value = logs.KillProc;
 			button1.onclick = killProces;
 			var button2 = createInput("button");
 			button2.className="default_button";
-			button2.value = "Pokaż";
+			button2.value = logs.Show;
 			button2.onclick = showLogs;
 			button2.id = file0;
 			var button3 = createInput("button");
 			button3.className="default_button";
-			button3.value = "Pobierz";
+			button3.value = UI.DNow;
 			button3.onclick = downloadLogs;
 			button3.id = file0;
 			if (log_on[0][2] != "" && type == "file")
 			{
 				var button4 = createInput("button");
 				button4.className="default_button";
-				button4.value = "Wyczyść";
+				button4.value = logs.DelLog;
 				button4.onclick = delLogs;
 				log_fileTableProces.push([logT, file_size, button1, button2, button3, button4]);
 			}

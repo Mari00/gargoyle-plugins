@@ -47,20 +47,20 @@
 			<label for='hdidle_enabled_debug' id='hdidle_enable_debug_label'><%~ Debug %></label>
 		</div>
 		<div id="hdidle_disk_container">
-			<label class='leftcolumn' for='hdidle_disk' id='hdidle_disk_label'><%~ Disk %> :</label>
+			<label class='leftcolumn' for='hdidle_disk' id='hdidle_disk_label'><%~ Disk %>:</label>
 			<select class='rightcolumn' id="hdidle_disk" onchange="swapBlock();"></select>
 		</div>
 		<div id="swap_on_container" class="rightcolumnonly">
 			<span class='rightcolumn' id="swap_on"><em><%~ Swap %></em></span>
 		</div>
 		<div id="hdidle_time_unit_container">
-			<label class='leftcolumn' for='hdidle_time_unit' id='hdidle_time_unit_label'><%~ TimeU %> :</label>
+			<label class='leftcolumn' for='hdidle_time_unit' id='hdidle_time_unit_label'><%~ TimeU %>:</label>
 			<select class='rightcolumn' id="hdidle_time_unit">
 				<option value="minutes"><%~ Min %></option>
 			</select>
 		</div>
 		<div id="hdidle_time_interval_container">
-			<label class='leftcolumn' for='hdidle_time_interval' id='hdidle_time_interval_label'><%~ TimeI %> :</label>
+			<label class='leftcolumn' for='hdidle_time_interval' id='hdidle_time_interval_label'><%~ TimeI %>:</label>
 			<select class='rightcolumn' id="hdidle_time_interval">
 				<option value="2">2</option>
 				<option value="5">5</option>
@@ -80,7 +80,7 @@
 	<fieldset id="disks">
 	<legend class="sectionheader"><%~ HdId %></legend>
 		<div id="hdidle_on_off_container">
-			<label class='leftcolumn' for='hdidle' id='hdidle_label'><%~ HdIdIs %> :</label>
+			<label class='leftcolumn' for='hdidle' id='hdidle_label'><%~ HdIdIs %>:</label>
 				<span class="rightcolumn"style="color:#27c650; display:none;" id="hdidle_on"><%~ Disabled %></span>
 				<span class="rightcolumn" style="color:red; display:none;" id="hdidle_off"><%~ Enabled %></span>
 		</div>
