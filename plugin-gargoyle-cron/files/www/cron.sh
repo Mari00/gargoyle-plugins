@@ -32,7 +32,7 @@
 	<fieldset id="add_task">
 	<legend class="sectionheader"><%~ AddTasks %></legend>
 		<div id="add_task_minute_container">
-			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'><%~ Minute %></label>
+			<label class='leftcolumn' for='add_task_minute' id='add_task_minute_label'><%~ Minute %>:</label>
 			<select class='rightcolumn' name="add_task_minute[]"  id="add_task_minute" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_minute2_container" class="rightcolumnonly">
@@ -40,7 +40,7 @@
 			<span class='rightcolumn' id="add_task_minute2"><%~ EvMinute %></span>
 		</div>
 		<div id="add_task_hour_container">
-			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'><%~ Hour %></label>
+			<label class='leftcolumn' for='add_task_hour' id='add_task_hour_label'><%~ Hour %>:</label>
 			<select class='rightcolumn' name="add_task_hour[]" id="add_task_hour" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_hour2_container" class="rightcolumnonly">
@@ -48,7 +48,7 @@
 			<span class='rightcolumn' id="add_task_hour2"><%~ EvHour %></span>
 		</div>
 		<div id="add_task_day_container">
-			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'><%~ Day %></label>
+			<label class='leftcolumn' for='add_task_day' id='add_task_day_label'><%~ Day %>:</label>
 			<select class='rightcolumn' name="add_task_day[]" id="add_task_day" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_day2_container" class="rightcolumnonly">
@@ -56,15 +56,15 @@
 			<span class='rightcolumn' id="add_task_day2"><%~ EvDay %></span>
 		</div>
 		<div id="add_task_month_container">
-			<label class='leftcolumn' for='add_task_month' id='add_task_month_label'><%~ Month %></label>
+			<label class='leftcolumn' for='add_task_month' id='add_task_month_label'><%~ Month %>:</label>
 			<select class='rightcolumn' name="add_task_month[]" id="add_task_month" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_dayweek_container">
-			<label class='leftcolumn' for='add_task_dayweek' id='add_task_dayweek_label'><%~ DayWeek %></label>
+			<label class='leftcolumn' for='add_task_dayweek' id='add_task_dayweek_label'><%~ DayWeek %>:</label>
 			<select class='rightcolumn' name="add_task_dayweek[]" id="add_task_dayweek" size=7 style="width:90px;" multiple></select>
 		</div>
 		<div id="add_task_script_container">
-			<label class='leftcolumn' for='add_task_script' id='add_task_script_label'><%~ TaskScript %></label>
+			<label class='leftcolumn' for='add_task_script' id='add_task_script_label'><%~ TaskScript %>:</label>
 			<input class='rightcolumn' type='text' id='add_task_script' size='40' />
 			<input type='button' class='default_button' id='add_new_task_button' value='<%~ Add %>' onclick='addNewTask()' />
 		</div>
