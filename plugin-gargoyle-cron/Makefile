@@ -36,7 +36,10 @@ define Package/plugin-gargoyle-cron/postinst
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	menu_name="Cron tasks"
 	[ -n `which i18n` ] && {
-		menu_name=$$(i18n-menu gargoyle.display.system_cron)
+		mn=$$(i18n-menu gargoyle.display.system_cron)
+		if [ -n "$$mn" ] ; then
+			menu_name="$$mn"
+		fi
 	}
 	uci set gargoyle.display.system_cron="$$menu_name"
 	uci set gargoyle.scripts.system_cron='cron.sh'

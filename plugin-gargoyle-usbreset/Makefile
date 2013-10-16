@@ -36,7 +36,10 @@ define Package/plugin-gargoyle-usbreset/postinst
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	menu_name="USBreset"
 	[ -n `which i18n` ] && {
-		menu_name=$$(i18n-menu gargoyle.display.system_hdidle)
+		mn=$$(i18n-menu gargoyle.display.system_usbreset)
+		if [ -n "$$mn" ] ; then
+			menu_name="$$mn"
+		fi
 	}
 	uci set gargoyle.display.system_usbreset="$$menu_name"
 	uci set gargoyle.scripts.system_usbreset='usbreset.sh'

@@ -36,7 +36,10 @@ define Package/plugin-gargoyle-hdidle/postinst
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	menu_name="Hd-Idle"
 	[ -n `which i18n` ] && {
-		menu_name=$$(i18n-menu gargoyle.display.system_hdidle)
+		mn=$$(i18n-menu gargoyle.display.system_hdidle)
+		if [ -n "$$mn" ] ; then
+			menu_name="$$mn"
+		fi
 	}
 	uci set gargoyle.display.system_hdidle="$$menu_name"
 	uci set gargoyle.scripts.system_hdidle='hdidle.sh'
