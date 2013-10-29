@@ -51,7 +51,7 @@
 			<select class='rightcolumn' id="log_disk"></select>
 		</div>
 		<div id="log_file_container">
-			<label class='leftcolumn' for='log_file' id='log_file_label'><%~ File %>:</label>
+			<label class='leftcolumn' for='log_file' id='log_file_label'><%~ FileLo %>:</label>
 			<input class='rightcolumn' type='text' id='log_file' size='40' />
 		</div>
 		<div id="log_size_container">
