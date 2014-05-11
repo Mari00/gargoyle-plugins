@@ -28,7 +28,7 @@ var cron=new Object(); //part of i18n
 	for (rowIndex in tableData)
 	{
 		rowData = tableData[rowIndex];
-		createCommands.push("echo \"" + rowData[0].replace(/"/g,"\\\"") + "\" >> /etc/crontabs/root");
+		createCommands.push("echo '" + rowData[0].replace(/'/g,"'\\''") + "' >> /etc/crontabs/root");
 	}
 	var commands = createCommands.join("\n");
 	var param = getParameterDefinition("commands", commands) + "&" + getParameterDefinition("hash", document.cookie.replace(/^.*hash=/,"").replace(/[\t ;]+.*$/, ""));
